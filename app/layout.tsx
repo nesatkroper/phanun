@@ -4,11 +4,12 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Developer Portfolio",
+  title: "Suon Phanun",
   description:
     "Professional portfolio showcasing my skills and projects as a developer",
   keywords: [
@@ -36,6 +37,7 @@ export default function RootLayout({
           disableTransitionOnChange>
           <Header />
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

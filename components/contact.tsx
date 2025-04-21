@@ -9,10 +9,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react";
-// import { useToast } from "@/hooks/use-toast"
+import { toast } from "sonner";
 
 export default function Contact() {
-  // const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -36,10 +35,9 @@ export default function Contact() {
     // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    // toast({
-    //   title: "Message sent!",
-    //   description: "Thank you for your message. I'll get back to you soon.",
-    // })
+    toast("Message sent!", {
+      description: "Thank you for your message. I'll get back to you soon.",
+    });
 
     setIsSubmitting(false);
     setIsSubmitted(true);
