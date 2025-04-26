@@ -15,7 +15,6 @@ export default function Skills() {
     // Frontend
     { name: "HTML/CSS", level: 95, category: "frontend" },
     { name: "JavaScript", level: 90, category: "frontend" },
-    { name: "TypeScript", level: 85, category: "frontend" },
     { name: "React", level: 90, category: "frontend" },
     { name: "Next.js", level: 85, category: "frontend" },
     { name: "Tailwind CSS", level: 90, category: "frontend" },
@@ -24,19 +23,16 @@ export default function Skills() {
     // Backend
     { name: "Node.js", level: 85, category: "backend" },
     { name: "Express", level: 80, category: "backend" },
-    { name: "GraphQL", level: 75, category: "backend" },
     { name: "REST API Design", level: 85, category: "backend" },
 
     // Database
-    { name: "MongoDB", level: 80, category: "database" },
+    { name: "MySql", level: 80, category: "database" },
     { name: "PostgreSQL", level: 75, category: "database" },
     { name: "Redis", level: 70, category: "database" },
 
     // DevOps & Tools
     { name: "Git/GitHub", level: 90, category: "tools" },
     { name: "Docker", level: 75, category: "tools" },
-    { name: "CI/CD", level: 70, category: "tools" },
-    { name: "Jest/Testing", level: 80, category: "tools" },
   ];
 
   const categories = [

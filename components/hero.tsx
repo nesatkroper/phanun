@@ -70,10 +70,10 @@ export default function Hero() {
           variants={containerVariants}>
           <motion.div variants={itemVariants}>
             <h1 className='text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter'>
-              {` Hi, I'm`} <span className='text-primary'>Your Name</span>
+              {` Hi, I'm`} <span className='text-primary'>Suon Phanun</span>
             </h1>
             <h2 className='text-2xl md:text-3xl font-medium mt-2 text-muted-foreground'>
-              Full-Stack Developer
+              Web Developer
             </h2>
           </motion.div>
 
@@ -107,7 +107,7 @@ export default function Hero() {
 
           <motion.div className='flex gap-4' variants={itemVariants}>
             <motion.a
-              href='https://github.com/yourusername'
+              href='https://github.com/nesatkroper'
               target='_blank'
               rel='noopener noreferrer'
               className='text-muted-foreground hover:text-primary transition-colors'
@@ -116,7 +116,7 @@ export default function Hero() {
               <span className='sr-only'>GitHub</span>
             </motion.a>
             <motion.a
-              href='https://linkedin.com/in/yourusername'
+              href='https://www.linkedin.com/in/suon-phanun-0a7395358?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
               target='_blank'
               rel='noopener noreferrer'
               className='text-muted-foreground hover:text-primary transition-colors'

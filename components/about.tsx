@@ -30,11 +30,9 @@ export default function About() {
   const technologies = [
     "React",
     "Next.js",
-    "TypeScript",
     "JavaScript",
     "Node.js",
     "Express",
-    "MongoDB",
     "PostgreSQL",
     "Tailwind CSS",
     "Framer Motion",

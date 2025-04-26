@@ -54,7 +54,7 @@ export default function Footer() {
             <h3 className='text-lg font-semibold'>Connect</h3>
             <div className='flex space-x-4'>
               <a
-                href='https://github.com/yourusername'
+                href='https://github.com/nesatkroper'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='text-muted-foreground hover:text-primary transition-colors'>
@@ -62,7 +62,7 @@ export default function Footer() {
                 <span className='sr-only'>GitHub</span>
               </a>
               <a
-                href='https://linkedin.com/in/yourusername'
+                href='https://www.linkedin.com/in/suon-phanun-0a7395358?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='text-muted-foreground hover:text-primary transition-colors'>
@@ -78,7 +78,7 @@ export default function Footer() {
                 <span className='sr-only'>Twitter</span>
               </a>
               <a
-                href='mailto:your.email@example.com'
+                href='mailto:phanunsuon@gmail.com'
                 className='text-muted-foreground hover:text-primary transition-colors'>
                 <Mail className='h-5 w-5' />
                 <span className='sr-only'>Email</span>
@@ -88,7 +88,7 @@ export default function Footer() {
         </div>
         <div className='mt-8 pt-8 border-t text-center text-sm text-muted-foreground'>
           <p>
-            &copy; {new Date().getFullYear()} Your Name. All rights reserved.
+            &copy; {new Date().getFullYear()} Suon Phanun. All rights reserved.
           </p>
         </div>
       </div>

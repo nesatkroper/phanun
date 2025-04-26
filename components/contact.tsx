@@ -1,7 +1,6 @@
 "use client";
 
 import type React from "react";
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -17,6 +16,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: "",
   });
@@ -28,23 +28,83 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const sendToTelegram = async (message: string) => {
+    const botToken = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
+
+    if (!botToken || !chatId) {
+      console.error("Telegram bot token or chat ID not configured");
+      return false;
+    }
+
+    try {
+      const response = await fetch(
+        `https://api.telegram.org/bot${botToken}/sendMessage`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+            parse_mode: "HTML",
+          }),
+        }
+      );
+
+      return response.ok;
+    } catch (error) {
+      console.error("Error sending message to Telegram:", error);
+      return false;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      // Format the message for Telegram
+      const telegramMessage = `
+        <b>New Contact Form Next Portfolio</b>
+        <b>================================</b>
+        <b>Name:</b> ${formData.name}
+        <b>Email:</b> ${formData.email}
+        <b>Subject:</b> ${formData.subject}
+        <b>Mobile:</b> ${formData.phone}
+        <b>Message:</b>
+        ${formData.message}
+      `.trim();
 
-    toast("Message sent!", {
-      description: "Thank you for your message. I'll get back to you soon.",
-    });
+      const success = await sendToTelegram(telegramMessage);
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: "", email: "", subject: "", message: "" });
-
-    // Reset the success state after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
+      if (success) {
+        toast.success("Message sent!", {
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
+        setIsSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        toast.error("Failed to send message", {
+          description: "Please try again later or contact me directly.",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("An error occurred", {
+        description: "Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setIsSubmitted(false), 5000);
+    }
   };
 
   const containerVariants = {
@@ -72,19 +132,19 @@ export default function Contact() {
     {
       icon: <Mail className='h-6 w-6 text-primary' />,
       title: "Email",
-      value: "your.email@example.com",
-      link: "mailto:your.email@example.com",
+      value: "phanusuon@gmail.com",
+      link: "mailto:phanusuon@gmail.com",
     },
     {
       icon: <Phone className='h-6 w-6 text-primary' />,
       title: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      value: "+855 (010) 280-202",
+      link: "tel:+85510280202",
     },
     {
       icon: <MapPin className='h-6 w-6 text-primary' />,
       title: "Location",
-      value: "San Francisco, CA",
+      value: "Puok, Siem Reap, Cambodia",
       link: null,
     },
   ];
@@ -167,19 +227,36 @@ export default function Contact() {
                       />
                     </div>
                   </div>
-                  <div className='space-y-2'>
-                    <label htmlFor='subject' className='text-sm font-medium'>
-                      Subject
-                    </label>
-                    <Input
-                      id='subject'
-                      name='subject'
-                      placeholder='Subject'
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                    />
+                  <div className='grid md:grid-cols-2 gap-6'>
+                    <div className='space-y-2'>
+                      <label htmlFor='subject' className='text-sm font-medium'>
+                        Subject
+                      </label>
+                      <Input
+                        id='subject'
+                        name='subject'
+                        placeholder='Subject'
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className='space-y-2'>
+                      <label htmlFor='subject' className='text-sm font-medium'>
+                        Mobile Number
+                      </label>
+                      <Input
+                        id='phone'
+                        name='phone'
+                        placeholder='010 280 202'
+                        type='tel'
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
                   </div>
+
                   <div className='space-y-2'>
                     <label htmlFor='message' className='text-sm font-medium'>
                       Message
@@ -188,7 +265,7 @@ export default function Contact() {
                       id='message'
                       name='message'
                       placeholder='Your message'
-                      rows={5}
+                      rows={10}
                       value={formData.message}
                       onChange={handleChange}
                       required
