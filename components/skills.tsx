@@ -3,66 +3,10 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-
-type Skill = {
-  name: string;
-  level: number;
-  category: string;
-};
+import { containerVariants, itemVariants } from "@/motion";
+import { categories, skills } from "@/db/skills";
 
 export default function Skills() {
-  const skills: Skill[] = [
-    // Frontend
-    { name: "HTML/CSS", level: 95, category: "frontend" },
-    { name: "JavaScript", level: 90, category: "frontend" },
-    { name: "React", level: 90, category: "frontend" },
-    { name: "Next.js", level: 85, category: "frontend" },
-    { name: "Tailwind CSS", level: 90, category: "frontend" },
-    { name: "Framer Motion", level: 80, category: "frontend" },
-
-    // Backend
-    { name: "Node.js", level: 85, category: "backend" },
-    { name: "Express", level: 80, category: "backend" },
-    { name: "REST API Design", level: 85, category: "backend" },
-
-    // Database
-    { name: "MySql", level: 80, category: "database" },
-    { name: "PostgreSQL", level: 75, category: "database" },
-    { name: "Redis", level: 70, category: "database" },
-
-    // DevOps & Tools
-    { name: "Git/GitHub", level: 90, category: "tools" },
-    { name: "Docker", level: 75, category: "tools" },
-  ];
-
-  const categories = [
-    { id: "frontend", name: "Frontend Development" },
-    { id: "backend", name: "Backend Development" },
-    { id: "database", name: "Database" },
-    { id: "tools", name: "DevOps & Tools" },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   return (
     <section id='skills' className='py-20 bg-muted/50'>
       <div className='px-4 md:px-6'>

@@ -1,7 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ExternalLink, Github, Maximize2, X } from "lucide-react";
+import { projects } from "@/db/project";
+import { Project } from "@/types";
 import {
   Card,
   CardContent,
@@ -10,157 +17,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ExternalLink, Github, Maximize2, X } from "lucide-react";
-import Image from "next/image";
-
-type Project = {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  category: string[];
-  technologies: string[];
-  liveUrl?: string;
-  githubUrl?: string;
-  details: string;
-};
+import {
+  containerVariants,
+  itemVariants,
+  modalVariants,
+  overlayVariants,
+} from "@/motion";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeCategory, setActiveCategory] = useState("all");
-
-  const projects: Project[] = [
-    {
-      id: "project1",
-      title: "E-Commerce Platform",
-      description:
-        "A full-featured e-commerce platform with product management, cart, and checkout functionality.",
-      image: "/placeholder.svg?height=400&width=600",
-      category: ["frontend", "fullstack"],
-      technologies: [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Stripe",
-        "MongoDB",
-      ],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/yourusername/project",
-      details:
-        "This e-commerce platform features a responsive design, user authentication, product filtering, shopping cart functionality, and secure checkout with Stripe integration. The admin dashboard allows for product and order management. Built with Next.js for server-side rendering and optimized performance.",
-    },
-    {
-      id: "project2",
-      title: "Task Management App",
-      description:
-        "A collaborative task management application with real-time updates.",
-      image: "/placeholder.svg?height=400&width=600",
-      category: ["frontend", "fullstack"],
-      technologies: ["React", "Node.js", "Socket.io", "PostgreSQL"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/yourusername/project",
-      details:
-        "This task management application allows teams to collaborate on projects in real-time. Features include drag-and-drop task organization, commenting, file attachments, and user permissions. The real-time functionality is implemented using Socket.io, while the backend API is built with Node.js and Express.",
-    },
-    {
-      id: "project3",
-      title: "Weather Dashboard",
-      description:
-        "A weather dashboard that displays current and forecasted weather data.",
-      image: "/placeholder.svg?height=400&width=600",
-      category: ["frontend"],
-      technologies: ["React", "Chart.js", "OpenWeather API"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/yourusername/project",
-      details:
-        "This weather dashboard provides users with current weather conditions and a 7-day forecast for any location. It features interactive charts for temperature, humidity, and wind speed trends. The application uses the OpenWeather API for data and implements client-side caching to minimize API calls.",
-    },
-    {
-      id: "project4",
-      title: "Content Management System",
-      description:
-        "A headless CMS for managing digital content across multiple platforms.",
-      image: "/placeholder.svg?height=400&width=600",
-      category: ["backend", "fullstack"],
-      technologies: ["Node.js", "Express", "MongoDB", "GraphQL"],
-      githubUrl: "https://github.com/yourusername/project",
-      details:
-        "This headless CMS provides a flexible backend for managing content across websites, mobile apps, and other digital platforms. It features a GraphQL API, role-based access control, content versioning, and media management. The system is designed to be extensible with a plugin architecture.",
-    },
-    {
-      id: "project5",
-      title: "Fitness Tracking App",
-      description:
-        "A mobile-first application for tracking workouts and nutrition.",
-      image: "/placeholder.svg?height=400&width=600",
-      category: ["frontend", "mobile"],
-      technologies: ["React Native", "Firebase", "Redux"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/yourusername/project",
-      details:
-        "This fitness tracking application allows users to log workouts, track nutrition, set goals, and view progress over time. It features customizable workout plans, a barcode scanner for food logging, and social sharing capabilities. The app uses Firebase for authentication and real-time database functionality.",
-    },
-    {
-      id: "project6",
-      title: "API Gateway Service",
-      description:
-        "A microservice gateway for routing and authenticating API requests.",
-      image: "/placeholder.svg?height=400&width=600",
-      category: ["backend"],
-      technologies: ["Node.js", "Express", "Redis", "Docker"],
-      githubUrl: "https://github.com/yourusername/project",
-      details:
-        "This API gateway service provides a unified entry point for microservices architecture. It handles request routing, authentication, rate limiting, and request/response transformation. The service is containerized with Docker and uses Redis for caching and rate limiting.",
-    },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
-  const modalVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.3,
-      },
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.8,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
-
-  const overlayVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-    exit: { opacity: 0 },
-  };
 
   const filteredProjects =
     activeCategory === "all"

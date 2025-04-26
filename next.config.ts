@@ -1,12 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  // experimental: {
-  //   outputFileTracingExcludes: {
-  //     "*": ["**/*"],
-  //   },
-  // },
+  images: {
+    domains: ["github.com"],
+  },
 };
 
 export default nextConfig;
