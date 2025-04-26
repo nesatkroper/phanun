@@ -68,7 +68,7 @@ export default function Contact() {
       // Format the message for Telegram
       const telegramMessage = `
         <b>New Contact Form Next Portfolio</b>
-        <b>================================</b>
+        <b>==========================</b>
         <b>Name:</b> ${formData.name}
         <b>Email:</b> ${formData.email}
         <b>Subject:</b> ${formData.subject}
@@ -250,7 +250,7 @@ export default function Contact() {
                         name='phone'
                         placeholder='010 280 202'
                         type='tel'
-                        value={formData.subject}
+                        value={formData.phone}
                         onChange={handleChange}
                         required
                       />

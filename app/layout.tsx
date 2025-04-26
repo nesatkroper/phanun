@@ -9,7 +9,10 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Suon Phanun",
+  title: {
+    default: "Suon Phanun - Developer Portfolio",
+    template: "%s - Suon Phanun - Developer Portfolio",
+  },
   description:
     "Professional portfolio showcasing my skills and projects as a developer",
   keywords: [
@@ -20,6 +23,9 @@ export const metadata: Metadata = {
     "backend",
     "full-stack",
   ],
+  authors: [{ name: "Suon Phanun" }],
+  creator: "Suon Phanun",
+  publisher: "konkmeng",
 };
 
 export default function RootLayout({
