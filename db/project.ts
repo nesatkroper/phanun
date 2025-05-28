@@ -22,20 +22,6 @@ export const projects: Project[] = [
       "This e-commerce platform features a responsive design, user authentication, product filtering, shopping cart functionality, and secure checkout with Stripe integration. The admin dashboard allows for product and order management. Built with Next.js for server-side rendering and optimized performance.",
   },
   {
-    id: "project2",
-    title: "Task Management App",
-    description:
-      "A collaborative task management application with real-time updates.",
-    image:
-      "https://github.com/nesatkroper/img/blob/main/phanunlogo.png?raw=true",
-    category: ["frontend", "fullstack"],
-    technologies: ["React", "Node.js", "Socket.io", "PostgreSQL"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/yourusername/project",
-    details:
-      "This task management application allows teams to collaborate on projects in real-time. Features include drag-and-drop task organization, commenting, file attachments, and user permissions. The real-time functionality is implemented using Socket.io, while the backend API is built with Node.js and Express.",
-  },
-  {
     id: "project3",
     title: "Weather Dashboard",
     description:
