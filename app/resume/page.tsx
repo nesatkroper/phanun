@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ResumeContent from "@/components/resume-content";
-
+export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: "Resume | Developer Portfolio",
   description: "My professional resume and work experience",
