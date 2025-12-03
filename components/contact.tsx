@@ -67,7 +67,7 @@ export default function Contact() {
     try {
       // Format the message for Telegram
       const telegramMessage = `
-        <b>New Contact Form Next Portfolio</b>
+        <b>New Contact Form Nun Portfolio</b>
         <b>==========================</b>
         <b>Name:</b> ${formData.name}
         <b>Email:</b> ${formData.email}

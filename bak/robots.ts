@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -7,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin/", "/private/"],
     },
-    sitemap: "https://konkmeng.site/sitemap.xml",
+    sitemap: "https://me.konkmeng.site/sitemap.xml",
   };
 }
